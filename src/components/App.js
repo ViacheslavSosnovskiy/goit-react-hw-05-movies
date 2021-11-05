@@ -28,8 +28,6 @@ const NotFoundPage = lazy(() =>
   )
 );
 
-// const KEY = '42d598709b0517212023a74116f4ecb9'
-
 export default function App() {
   return (
     <>
