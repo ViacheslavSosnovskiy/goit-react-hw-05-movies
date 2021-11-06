@@ -10,21 +10,21 @@ import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 // toastify
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ToastContainer } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 
 // lazy
 const HomePage = lazy(() =>
-  import("../pages/homePage/HomePage" /* webpackChankName: 'home-page' */)
+  import("../pages/homePage/HomePage" /* webpackChunkName: 'home-page' */)
 );
 
 const MoviesPage = lazy(() =>
-  import("../pages/moviesPage/MoviesPage" /* webpackChankName: 'movies-page' */)
+  import("../pages/moviesPage/MoviesPage" /* webpackChunkName: 'movies-page' */)
 );
 
 const NotFoundPage = lazy(() =>
   import(
-    "../pages/notFoundPage/NotFoundPage" /* webpackChankName: 'notFound-page' */
+    "../pages/notFoundPage/NotFoundPage" /* webpackChunkName: 'notFound-page' */
   )
 );
 
@@ -59,7 +59,7 @@ export default function App() {
           </Route>
         </Switch>
       </Suspense>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </>
   );
 }

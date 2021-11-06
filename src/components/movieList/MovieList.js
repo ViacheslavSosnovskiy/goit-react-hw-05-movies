@@ -1,7 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useRouterMatch } from "react-router-dom";
+// import {useRouterMatch} from 'react-router-dom'
 
 export default function MovieList({ movies, url, location }) {
   console.log(movies);
+  // const {url} = useRouterMatch()
   return (
     <>
       <ul>
@@ -15,12 +17,12 @@ export default function MovieList({ movies, url, location }) {
             >
               <div>
                 <img
-                  src={`https://image.tmdb.org/t/p/w300` + poster_path}
+                  src={`https://image.tmdb.org/t/p/w200` + poster_path}
                   alt={title}
                 />
                 <div>
                   <h2>{title}</h2>
-                  {release_date}
+                  {release_date && <span>{release_date.slice(0, 4)}</span>}
                 </div>
               </div>
             </NavLink>

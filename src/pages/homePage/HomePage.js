@@ -13,14 +13,14 @@ export default function HomePage() {
   const [status, setStatus] = useState("idle");
 
   useEffect(() => {
-    getPopularMovies();
+    getPopular();
   }, []);
 
-  const getPopularMovies = () => {
+  const getPopular = () => {
     setStatus("pending");
 
     movieApi.getPopularMovies(page).then((response) => {
-      const data = response.result;
+      const data = response.results;
       setMovies((prevMovies) => [...prevMovies, ...data]);
     });
     setPage((prevPage) => prevPage + 1);
@@ -32,7 +32,7 @@ export default function HomePage() {
   };
 
   const loadMorePopularMovies = () => {
-    getPopularMovies();
+    getPopular();
   };
 
   const scroll = () => {
