@@ -13,13 +13,19 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 // import { ToastContainer } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 
-// lazy
+// ====  lazy-import ====
 const HomePage = lazy(() =>
   import("../pages/homePage/HomePage" /* webpackChunkName: 'home-page' */)
 );
 
 const MoviesPage = lazy(() =>
   import("../pages/moviesPage/MoviesPage" /* webpackChunkName: 'movies-page' */)
+);
+
+const MovieDetailsPage = lazy(() =>
+  import(
+    "../pages/movieDetailsPage/MovieDetailsPage" /* webpackChunkName: 'movieDetails-page' */
+  )
 );
 
 const NotFoundPage = lazy(() =>
@@ -48,6 +54,10 @@ export default function App() {
         <Switch>
           <Route exact path="/">
             <HomePage />
+          </Route>
+
+          <Route path="/movies/:movieId">
+            <MovieDetailsPage />
           </Route>
 
           <Route exact path="/movies">

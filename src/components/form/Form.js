@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function Form({ onSubmit }) {
+export default function Form({ searchHandler }) {
   const [query, setQuery] = useState("");
 
   const onInputChange = (e) => {
@@ -16,7 +16,7 @@ export default function Form({ onSubmit }) {
       return toast.error("Введите корректно!");
     }
 
-    onSubmit(query);
+    searchHandler(query);
     resetQuery();
   };
 
