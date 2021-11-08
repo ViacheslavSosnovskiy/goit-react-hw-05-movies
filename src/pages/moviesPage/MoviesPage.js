@@ -30,6 +30,9 @@ export default function MoviesPage() {
   }, [userQuery]);
 
   const getSearchQuery = () => {
+    // if (userQuery.trim() === "") {  ==== ???????????????????????
+    //   return;
+    // }
     setStatus("pending");
 
     apiService.getMovieSearch(userQuery, page).then((response) => {

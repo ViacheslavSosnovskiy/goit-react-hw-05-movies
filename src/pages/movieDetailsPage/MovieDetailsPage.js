@@ -1,14 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from "react";
-import {
-  useRouteMatch,
-  useLocation,
-  useParams,
-  Router,
-  Switch,
-} from "react-router";
-import { NavLink } from "react-router-dom";
-import {} from "react-router-dom";
-import * as apiServise from "../../services/apiService";
+import { useRouteMatch, Router } from "react-router-dom";
+import * as apiService from "../../services/apiService";
 import MovieCard from "../../components/movieCard/MovieCard";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -26,9 +18,10 @@ export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
   const [status, setStatus] = useState("idle");
 
-  // const match = useRouteMatch();
-  // const { path } = useRouteMatch();
-  // const { movieId } = match.params;
+  const match = useRouteMatch();
+  const { path } = useRouteMatch();
+  const { movieId } = match.params;
+  console.log("match.params", match.params);
 
   useEffect(() => {
     getMovieInfo();
@@ -36,20 +29,20 @@ export default function MovieDetailsPage() {
 
   const getMovieInfo = () => {
     setStatus("pending");
-    apiServise.getMovieById(movieId).then((response) => {
+    apiService.getMovieById(movieId).then((response) => {
       setMovie(response);
     });
     setStatus("resolved");
   };
 
-  const { url } = useRouteMatch();
-  const location = useLocation();
+  // const { url } = useRouteMatch();
+  // const location = useLocation();
 
-  const { slug } = useParams();
-  const movieId = slug.match(/[a-z0-9]+$/)[0];
+  // const { slug } = useParams();
+  // const movieId = slug.match(/[a-z0-9]+$/)[0];
   return (
     <>
-      <div>
+      {/* <div>
         <NavLink
           to={{
             pathname: url + "/cast",
@@ -66,7 +59,7 @@ export default function MovieDetailsPage() {
         >
           Reviews
         </NavLink>
-      </div>
+      </div> */}
       {status === "pending" && (
         <Loader
           type="ThreeDots"
@@ -89,14 +82,12 @@ export default function MovieDetailsPage() {
           />
         }
       >
-        <Switch>
-          <Router exact path={`${url}/cast`}>
-            <Cast movieId={movieId} />
-          </Router>
-          <Router exact path={`${url}/reviews`}>
-            <Reviews movieId={movieId} />
-          </Router>
-        </Switch>
+        <Router exact path={`${path}/cast`}>
+          {movie && <Cast />}
+        </Router>
+        <Router exact path={`${path}/reviews`}>
+          {movie && <Reviews />}
+        </Router>
       </Suspense>
     </>
   );
