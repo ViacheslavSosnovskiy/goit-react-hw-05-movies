@@ -9,7 +9,7 @@ export default function Cast() {
   const [actors, setActors] = useState([]);
   const [status, setStatus] = useState("idle");
 
-  const { movieId } = useParams;
+  const { movieId } = useParams();
   console.log("movieId", movieId);
 
   useEffect(() => {

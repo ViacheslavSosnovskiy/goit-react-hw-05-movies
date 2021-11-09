@@ -1,5 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from "react";
-import { useRouteMatch, Router } from "react-router-dom";
+import { useRouteMatch, Route } from "react-router-dom";
 import * as apiService from "../../services/apiService";
 import MovieCard from "../../components/movieCard/MovieCard";
 import Loader from "react-loader-spinner";
@@ -35,31 +35,8 @@ export default function MovieDetailsPage() {
     setStatus("resolved");
   };
 
-  // const { url } = useRouteMatch();
-  // const location = useLocation();
-
-  // const { slug } = useParams();
-  // const movieId = slug.match(/[a-z0-9]+$/)[0];
   return (
     <>
-      {/* <div>
-        <NavLink
-          to={{
-            pathname: url + "/cast",
-            state: { ...location.state, id: movieId },
-          }}
-        >
-          Cast
-        </NavLink>
-        <NavLink
-          to={{
-            pathname: url + "/reviews",
-            state: { ...location.state, id: movieId },
-          }}
-        >
-          Reviews
-        </NavLink>
-      </div> */}
       {status === "pending" && (
         <Loader
           type="ThreeDots"
@@ -82,12 +59,12 @@ export default function MovieDetailsPage() {
           />
         }
       >
-        <Router exact path={`${path}/cast`}>
+        <Route exact path={`${path}/cast`}>
           {movie && <Cast />}
-        </Router>
-        <Router exact path={`${path}/reviews`}>
+        </Route>
+        <Route exact path={`${path}/reviews`}>
           {movie && <Reviews />}
-        </Router>
+        </Route>
       </Suspense>
     </>
   );

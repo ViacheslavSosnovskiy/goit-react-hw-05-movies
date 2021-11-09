@@ -30,9 +30,9 @@ export default function MovieCard({ movie }) {
 
         <div>
           {title && <h2>{title}</h2>}
-          {release_date && <p>{release_date}</p>}
-          {vote_average && <p>{vote_average}</p>}
-          {overview && <p>{overview}</p>}
+          {release_date && <p>release date: {release_date}</p>}
+          {vote_average && <p>rating: {vote_average}</p>}
+          {overview && <p>description: {overview}</p>}
         </div>
       </div>
       <div>
